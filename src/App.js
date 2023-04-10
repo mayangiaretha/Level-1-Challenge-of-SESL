@@ -1,8 +1,9 @@
 import React from "react";
+import ClickCounter from "./components/clickCounter";
 import "./App.css";
 
 function App() {
-  return <div>challenge 1</div>;
+  return <ClickCounter />;
 }
 
 export default App;
