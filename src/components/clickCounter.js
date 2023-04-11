@@ -1,24 +1,29 @@
 import React, { useState, useEffect } from "react";
 
+const COUNT_KEY = "count";
+
 const ClickCounter = () => {
-  const [count, setCount] = useState(() => {
-    const storedCount = localStorage.getItem("count");
-    return storedCount ? parseInt(storedCount, 10) : 0;
-  });
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    localStorage.setItem("count", count.toString());
-  }, [count]);
+    const storedCount = localStorage.getItem(COUNT_KEY);
+    if (storedCount) {
+      const parsedCount = parseInt(storedCount, 10);
+      setCount(parsedCount);
+    }
+  }, []);
 
-  const handleIncrement = () => {
-    setCount((prevCount) => prevCount + 1);
+  const handleClick = () => {
+    const newCount = count + 1;
+    setCount(newCount);
+    localStorage.setItem(COUNT_KEY, newCount.toString());
   };
 
   return (
     <div>
       <p>Count: {count}</p>
-      <button type="button" onClick={handleIncrement}>
-        Increment
+      <button type="button" onClick={handleClick}>
+        counter
       </button>
     </div>
   );
