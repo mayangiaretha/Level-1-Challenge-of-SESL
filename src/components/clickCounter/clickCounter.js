@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getLocationData, postClick, getClicks } from "./clickCounter.api";
 import "./clickCounter.css";
 
-const url = "https://location-click-lighthall.herokuapp.com/api/v1/location";
+const url = process.env.REACT_APP_BASE_URL;
 
 const ClickCounter = () => {
   const [countries, setCountries] = useState([]);
